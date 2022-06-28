@@ -6,8 +6,23 @@ from test_framework import generic_test
 
 def merge_two_sorted_lists(L1: Optional[ListNode],
                            L2: Optional[ListNode]) -> Optional[ListNode]:
-    # TODO - you fill in here.
-    return None
+    if L1 == None and L2 == None:
+        return None
+    elif L1 == None:
+        return L2
+    elif L2 == None:
+        return L1
+
+    SL = None
+    if L1.data <= L2.data:
+        SL = L1
+        L1 = L1.next
+    else:
+        SL = L2
+        L2 = L2.next
+
+    SL.next = merge_two_sorted_lists(L1, L2)
+    return SL
 
 
 if __name__ == '__main__':
